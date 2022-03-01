@@ -18,7 +18,6 @@ jobs:
     - uses: google-github-actions/setup-gcloud@master
       with:
         service_account_key: ${{ secrets.CREDENTIALS_GCP }}
-        #gcloud_service_key: ${{ secrets.CREDENTIALS_GCP }}
         project_id: ${{ env.PROJECT_ID }}
         registry: gcr.io
         export_default_credentials: true
@@ -45,11 +44,11 @@ jobs:
         docker push gcr.io/$PROJECT_ID/$IMAGE_NAME:latest
         docker push gcr.io/$PROJECT_ID/$IMAGE_NAME:$GIT_TAG
 
-    - name: Push Docker Image to Artifact Registry
-      env:
-        GIT_TAG: ${{ steps.increment-git-tag.outputs.git-tag }}
-      run: |-
-        docker tag $IMAGE_NAME:latest us-west2-docker.pkg.dev/$PROJECT_ID/images/$IMAGE_NAME:latest
-        docker tag $IMAGE_NAME:latest us-west2-docker.pkg.dev/$PROJECT_ID/images/$IMAGE_NAME:$GIT_TAG
-        docker push us-west2-docker.pkg.dev/$PROJECT_ID/images/$IMAGE_NAME:latest
-        docker push us-west2-docker.pkg.dev/$PROJECT_ID/images/$IMAGE_NAME:$GIT_TAG
+    # - name: Push Docker Image to Artifact Registry
+    #   env:
+    #     GIT_TAG: ${{ steps.increment-git-tag.outputs.git-tag }}
+    #   run: |-
+    #     docker tag $IMAGE_NAME:latest us-west2-docker.pkg.dev/$PROJECT_ID/images/$IMAGE_NAME:latest
+    #     docker tag $IMAGE_NAME:latest us-west2-docker.pkg.dev/$PROJECT_ID/images/$IMAGE_NAME:$GIT_TAG
+    #     docker push us-west2-docker.pkg.dev/$PROJECT_ID/images/$IMAGE_NAME:latest
+    #     docker push us-west2-docker.pkg.dev/$PROJECT_ID/images/$IMAGE_NAME:$GIT_TAG
