@@ -16,7 +16,7 @@ jobs:
 
     - uses: google-github-actions/setup-gcloud@master
       with:
-        CREDENTIALS_GCP: ${{ secrets.CREDENTIALS_GCP }}
+        GOOGLE_CREDENTIALS: ${{ secrets.CREDENTIALS_GCP }}
         project_id: ${{ env.PROJECT_ID }}
         export_default_credentials: true
 
