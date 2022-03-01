@@ -17,11 +17,11 @@ jobs:
 
     - uses: google-github-actions/setup-gcloud@master
       with:
-        #service_account_key: ${{ secrets.CREDENTIALS_GCP }}
-        gcloud_service_key: ${{ secrets.CREDENTIALS_GCP }}
+        service_account_key: ${{ secrets.CREDENTIALS_GCP }}
+        #gcloud_service_key: ${{ secrets.CREDENTIALS_GCP }}
         project_id: ${{ env.PROJECT_ID }}
         registry: gcr.io
-        #export_default_credentials: true
+        export_default_credentials: true
 
     - name: Build Docker Image
       run: docker build -t $IMAGE_NAME:latest .
